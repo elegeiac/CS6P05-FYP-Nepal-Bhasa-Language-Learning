@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+import 'package:nepalbhasafyp/presentation/colors.dart';
+
+import '../../Custom Widget/customTextFormField.dart';
+import '../Home Screen/home.dart';
+
+class loginForm extends StatefulWidget {
+  const loginForm({Key? key}) : super(key: key);
+
+  @override
+  _loginFormState createState() => _loginFormState();
+}
+
+class _loginFormState extends State<loginForm> {
+  final loginFormKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String? passwordInput;
+  String? emailInput;
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    onPrimary: AppColor.MAROON,
+    primary: AppColor.CREAM,
+    minimumSize: Size(100, 40),
+    padding: EdgeInsets.symmetric(horizontal: 20),
+    shadowColor: AppColor.BLACK,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(5)),
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      child: Form(
+        key: loginFormKey,
+        child: Column(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(40, 40, 0, 0),
+                  child: Text(
+                    "EMAIL",
+                    style: TextStyle(
+                      fontFamily: 'Cinzel',
+                      fontSize: 20,
+                      color: AppColor.CREAM,
+                    ),
+                  ),
+                ),
+                CustomTextFormField(
+                  hint: "Please enter your email address",
+                  controller: emailController,
+                  save: (data) {
+                    emailInput = data;
+                  },
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(40, 20, 0, 0),
+                  child: Text(
+                    "Password",
+                    style: TextStyle(
+                      fontFamily: 'Cinzel',
+                      fontSize: 20,
+                      color: AppColor.CREAM,
+                    ),
+                  ),
+                ),
+                CustomTextFormField(
+                  hint: "Please enter your password",
+                  controller: passwordController,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 60, 0, 0),
+                  child: ElevatedButton(
+                      style: raisedButtonStyle,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const homePage()),
+                        );
+                      },
+                      child: Text(
+                        "SIGN IN",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Cinzel',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
