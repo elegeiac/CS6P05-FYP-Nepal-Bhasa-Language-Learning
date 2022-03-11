@@ -1,35 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/presentation/colors.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class customPassTextFormField extends StatefulWidget {
+  // const customPassTextFormField({Key? key}) : super(key: key);
   final String? hint;
   final TextEditingController? controller;
   final Function(String?)? save;
   final Widget? suffix;
-  final bool hideText;
 
   final Function? onSaved;
 
-  const CustomTextFormField({
+  customPassTextFormField({
     Key? key,
     this.save,
     this.suffix,
     this.hint,
     this.controller,
     this.onSaved,
-    required this.hideText,
-  }) : super(key: key);
+  });
 
+  @override
+  State<customPassTextFormField> createState() =>
+      _customPassTextFormFieldState();
+}
+
+class _customPassTextFormFieldState extends State<customPassTextFormField> {
+  bool hidePassword = true;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Center(
       child: Container(
-        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
         width: size.width * 0.8,
         child: TextFormField(
-          onSaved: this.save,
-          controller: this.controller,
+          onSaved: widget.save,
+          controller: widget.controller,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'This field cannot be empty!';
@@ -37,12 +43,21 @@ class CustomTextFormField extends StatelessWidget {
             return null;
           },
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: hidePassword,
           decoration: InputDecoration(
-              suffix: suffix,
-              hintText: this.hint,
+              suffixIcon: IconButton(
+                icon: Icon(hidePassword == true
+                    ? Icons.visibility_off
+                    : Icons.visibility, color: AppColor.MAROON,),
+                onPressed: () {
+                  setState(() {
+                    hidePassword = !hidePassword;
+                  });
+                },
+              ),
+              hintText: widget.hint,
               hintStyle: TextStyle(fontSize: 14, color: AppColor.GREY),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
               filled: true,
               fillColor: AppColor.CREAM,
               border: OutlineInputBorder(

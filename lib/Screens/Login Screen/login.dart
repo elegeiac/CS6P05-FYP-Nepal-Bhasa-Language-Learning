@@ -18,7 +18,7 @@ class _loginPageState extends State<loginPage> {
     return Scaffold(
         backgroundColor: AppColor.BLACK,
         body: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          //physics: NeverScrollableScrollPhysics(),
           child: Center(
             child: Stack(
               children: [
@@ -38,7 +38,7 @@ class _loginPageState extends State<loginPage> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 215, 0, 0),
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  height: MediaQuery.of(context).size.height,
+                  height: size.height * 0.73,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: AppColor.MAROON,

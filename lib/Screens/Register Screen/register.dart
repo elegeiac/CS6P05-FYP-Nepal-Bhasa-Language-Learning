@@ -18,7 +18,7 @@ class _registerPageState extends State<registerPage> {
     return Scaffold(
         backgroundColor: AppColor.BLACK,
         body: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          //physics: NeverScrollableScrollPhysics(),
           child: Center(
             child: Stack(
               children: [
@@ -36,9 +36,9 @@ class _registerPageState extends State<registerPage> {
                       )),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 170, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 160, 0, 0),
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  height: MediaQuery.of(context).size.height,
+                  height: size.height * 0.795,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: AppColor.MAROON,
@@ -50,7 +50,7 @@ class _registerPageState extends State<registerPage> {
                   //child: loginForm()),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 190, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 170, 0, 0),
                   child: Center(
                     child: Text(
                       "REGISTER",
@@ -66,7 +66,7 @@ class _registerPageState extends State<registerPage> {
                     margin: EdgeInsets.fromLTRB(10, 220, 0, 0),
                     child: registerForm()),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 755, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 745, 0, 0),
                   child: Center(
                     child: InkWell(
                       onTap: () {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../Custom Widget/customPasswordTextFormField.dart';
 import '../../Custom Widget/customTextFormField.dart';
 import '../../Presentation/colors.dart';
+import '../Login Screen/login.dart';
 
 class registerForm extends StatefulWidget {
   const registerForm({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class _registerFormState extends State<registerForm> {
   final emailController = TextEditingController();
   final phoneNumController = TextEditingController();
   final passwordController = TextEditingController();
+
   // final conPasswordController = TextEditingController();
 
   String? fnameInput;
@@ -46,11 +49,11 @@ class _registerFormState extends State<registerForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(40, 30, 0, 0),
+                  margin: EdgeInsets.fromLTRB(40, 10, 0, 0),
                   child: Text(
-                    "FULL NAME",
+                    "Full Name",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
@@ -62,18 +65,19 @@ class _registerFormState extends State<registerForm> {
                   save: (data) {
                     fnameInput = data;
                   },
+                  hideText: false,
                 ),
               ],
             ),
-             Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(40, 10, 0, 0),
                   child: Text(
-                    "PHONE NUMBER",
+                    "Phone Number",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
@@ -85,6 +89,7 @@ class _registerFormState extends State<registerForm> {
                   save: (data) {
                     phoneNumInput = data;
                   },
+                  hideText: false,
                 ),
               ],
             ),
@@ -94,9 +99,9 @@ class _registerFormState extends State<registerForm> {
                 Container(
                   margin: EdgeInsets.fromLTRB(40, 10, 0, 0),
                   child: Text(
-                    "EMAIL",
+                    "Email",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
@@ -108,6 +113,7 @@ class _registerFormState extends State<registerForm> {
                   save: (data) {
                     emailInput = data;
                   },
+                  hideText: false,
                 ),
               ],
             ),
@@ -115,19 +121,22 @@ class _registerFormState extends State<registerForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(40, 10, 0, 0),
+                  margin: EdgeInsets.fromLTRB(30, 10, 0, 0),
                   child: Text(
                     "Password",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
                   ),
                 ),
-                CustomTextFormField(
+                customPassTextFormField(
                   hint: "Please enter your password",
                   controller: passwordController,
+                  save: (data) {
+                    passwordInput = data;
+                  },
                 ),
               ],
             ),
@@ -137,7 +146,16 @@ class _registerFormState extends State<registerForm> {
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child: ElevatedButton(
                       style: raisedButtonStyle,
-                      onPressed: () {},
+                      onPressed: () {
+                        if (registerFormKey.currentState!.validate()) {
+                          registerFormKey.currentState!.save();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const loginPage()),
+                          );
+                        }
+                      },
                       child: Text(
                         "REGISTER",
                         style: TextStyle(

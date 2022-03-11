@@ -55,6 +55,7 @@ class _dictionaryPageState extends State<dictionaryPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white38,
+        //backgroundColor: Colors.black,
         unselectedLabelStyle: TextStyle(fontFamily: 'Cinzel'),
         selectedLabelStyle: TextStyle(
             fontFamily: 'Cinzel', fontSize: 15, fontWeight: FontWeight.bold),

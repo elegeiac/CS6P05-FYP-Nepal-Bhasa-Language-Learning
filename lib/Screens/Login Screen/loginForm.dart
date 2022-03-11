@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/presentation/colors.dart';
 
+import '../../Custom Widget/customPasswordTextFormField.dart';
 import '../../Custom Widget/customTextFormField.dart';
 import '../Home Screen/home.dart';
 
@@ -15,6 +16,7 @@ class _loginFormState extends State<loginForm> {
   final loginFormKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool hidePassword = true;
 
   String? passwordInput;
   String? emailInput;
@@ -44,9 +46,9 @@ class _loginFormState extends State<loginForm> {
                 Container(
                   margin: EdgeInsets.fromLTRB(40, 40, 0, 0),
                   child: Text(
-                    "EMAIL",
+                    "Email",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
@@ -58,6 +60,7 @@ class _loginFormState extends State<loginForm> {
                   save: (data) {
                     emailInput = data;
                   },
+                  hideText: false,
                 ),
               ],
             ),
@@ -69,30 +72,36 @@ class _loginFormState extends State<loginForm> {
                   child: Text(
                     "Password",
                     style: TextStyle(
-                      fontFamily: 'Cinzel',
+                      fontFamily: 'Nexa',
                       fontSize: 20,
                       color: AppColor.CREAM,
                     ),
                   ),
                 ),
-                CustomTextFormField(
+                customPassTextFormField(
                   hint: "Please enter your password",
                   controller: passwordController,
+                  save: (data) {
+                    passwordInput = data;
+                  },
                 ),
               ],
             ),
             Column(
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 60, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: ElevatedButton(
                       style: raisedButtonStyle,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const homePage()),
-                        );
+                        if (loginFormKey.currentState!.validate()) {
+                          loginFormKey.currentState!.save();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const homePage()),
+                          );
+                        }
                       },
                       child: Text(
                         "SIGN IN",
