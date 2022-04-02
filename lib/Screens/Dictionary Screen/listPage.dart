@@ -7,19 +7,19 @@ import 'package:nepalbhasafyp/Models/Phrase.dart';
 import 'package:nepalbhasafyp/Network/service.dart';
 import 'package:characters/characters.dart';
 
-import '../../../Custom Widget/customAppbar.dart';
-import '../../../Presentation/colors.dart';
+import '../../Custom Widget/customAppbar.dart';
+import '../../Presentation/colors.dart';
 
-class favouritePage extends StatefulWidget {
+class listPage extends StatefulWidget {
   final String? appbar;
   final String? category;
-  const favouritePage({Key? key, this.appbar, this.category}) : super(key: key);
+  const listPage({Key? key, this.appbar, this.category}) : super(key: key);
 
   @override
-  _favouritePageState createState() => _favouritePageState();
+  _listPageState createState() => _listPageState();
 }
 
-class _favouritePageState extends State<favouritePage> {
+class _listPageState extends State<listPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,9 @@ class _favouritePageState extends State<favouritePage> {
                               engMeaning: data.phraseEnglish,
                               devTrans: data.phraseDevnagari,
                               engTrans: data.phraseEnglish,
-                              lipiTrans: data.phraseLipi)
+                              lipiTrans: data.phraseLipi,
+                              lipiNarration: data.phraseNarration,
+                            )
                           : Container(height: 1);
                     }),
                   );

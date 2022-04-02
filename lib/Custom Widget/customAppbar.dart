@@ -29,11 +29,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const favoutitePage()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      const favouritePage(appbar: "favourites")),
             );
           },
           child: Icon(
-            Icons.favorite,
+            Icons.bookmark,
             color: AppColor.MAROON,
           ),
         ),
@@ -43,7 +45,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const searchPage()),
+                MaterialPageRoute(
+                    builder: (context) => const searchPage(appbar: "search")),
               );
             },
             child: Icon(

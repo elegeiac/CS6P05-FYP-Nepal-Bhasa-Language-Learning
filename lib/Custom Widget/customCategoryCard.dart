@@ -15,7 +15,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(22, 0, 0, 15),
+      margin: EdgeInsets.fromLTRB(22, 0, 0, 10),
       alignment: Alignment.topCenter,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
       child: ClipRect(

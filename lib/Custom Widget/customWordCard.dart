@@ -1,27 +1,59 @@
 import 'dart:ffi';
 import 'dart:ui';
-
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:nepalbhasafyp/Custom%20Widget/audioWidget.dart';
 import 'package:nepalbhasafyp/Presentation/colors.dart';
+import 'package:nepalbhasafyp/Screens/Favorite%20Screen/favouritePage.dart';
+
+import '../Models/Phrase.dart';
 
 class WordCard extends StatefulWidget {
   final String? engMeaning;
   final String? devTrans;
   final String? engTrans;
   final String? lipiTrans;
+  final String? lipiNarration;
+
   // final AudioElement? narration;
   const WordCard({
     this.engMeaning,
     this.devTrans,
     this.engTrans,
     this.lipiTrans,
-    // this.narration,
+    this.lipiNarration,
   });
   @override
   _WordCardState createState() => _WordCardState();
 }
 
 class _WordCardState extends State<WordCard> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  initAudio() {
+    audioPlayer.play(widget.lipiNarration!);
+  }
+  // late AudioPlayer audioPlayer;
+
+  // @override
+  // void initState() {
+  //   audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
+  //   super.initState();
+  // }
+
+  // // void playAudio(String narra) {
+  // //   audioPlayer.stop();
+  // //   audioPlayer.play(narration);
+  // // }
+
+  // @override
+  // void dispose() {
+  //   audioPlayer.dispose();
+  //   super.dispose();
+  // }
+
+  bool toggle = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,78 +66,101 @@ class _WordCardState extends State<WordCard> {
           child: Container(
             padding: EdgeInsets.all(10),
             width: 350,
-            height: 230,
+            height: 320,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColor.CREAM.withOpacity(0.7)),
-              gradient: LinearGradient(colors: [
-                Colors.white.withOpacity(0.8),
-                Colors.white.withOpacity(0.4)
-              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+              borderRadius: BorderRadius.circular(20),
+              color: AppColor.CREAM,
+              // gradient: LinearGradient(colors: [
+              //   AppColor.CREAM.withOpacity(0.9),
+              //   AppColor.CREAM.withOpacity(0.9)
+              // ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             ),
             child: Column(
               children: [
-                Container(
-                  // margin: ,
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Meaning:',
-                    style: TextStyle(
-                        fontFamily: 'Cinzel',
-                        fontSize: 16,
-                        color: AppColor.MAROON),
-                  ),
+                Row(
+                  children: [
+                    Container(
+                      // margin: ,
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Meaning:',
+                        style: TextStyle(
+                            fontFamily: 'Cinzel',
+                            fontSize: 18,
+                            color: AppColor.MAROON),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(190, 0, 0, 0),
+                      child: IconButton(
+                          icon: toggle
+                              ? Icon(Icons.bookmark,
+                                  size: 28.0, color: AppColor.MAROON)
+                              : Icon(Icons.bookmark_add_outlined,
+                                  size: 28.0, color: AppColor.MAROON),
+                          onPressed: () {
+                            setState(() {
+                              toggle = !toggle;
+                            });
+                          }),
+                    )
+                  ],
                 ),
                 Container(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'My name is Ushaan.',
+                    widget.engMeaning!,
                     style: TextStyle(
                         fontFamily: 'Nexa',
-                        fontSize: 18,
-                        color: AppColor.MAROON),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Translation:',
-                    style: TextStyle(
-                        fontFamily: 'Cinzel',
-                        fontSize: 16,
+                        fontSize: 20,
                         color: AppColor.MAROON),
                   ),
                 ),
                 Row(
                   children: [
                     Container(
+                      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'जि गु ना ',
+                        'Translation:',
                         style: TextStyle(
-                            fontFamily: 'Nexa',
+                            fontFamily: 'Cinzel',
                             fontSize: 18,
                             color: AppColor.MAROON),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(220, 0, 0, 0),
-                      child: Icon(
-                        Icons.play_circle_filled_outlined,
-                        color: AppColor.MAROON,
-                        size: 37.0,
-                      ),
+                      margin: EdgeInsets.fromLTRB(150, 0, 0, 0),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.play_circle_filled_outlined,
+                            color: AppColor.MAROON,
+                            size: 30.0,
+                          ),
+                          onPressed: () {
+                            print(widget.lipiNarration!);
+                            initAudio();
+                          }),
                     ),
                   ],
                 ),
                 Container(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Ji Gu Naa ',
+                    widget.devTrans!,
                     style: TextStyle(
                         fontFamily: 'Nexa',
-                        fontSize: 18,
+                        fontSize: 20,
+                        color: AppColor.MAROON),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    widget.engTrans!,
+                    style: TextStyle(
+                        fontFamily: 'Nexa',
+                        fontSize: 20,
                         color: AppColor.MAROON),
                   ),
                 ),
@@ -113,21 +168,17 @@ class _WordCardState extends State<WordCard> {
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Nepal Lipi:',
+                    'Ranjana Lipi:',
                     style: TextStyle(
                         fontFamily: 'Cinzel',
-                        fontSize: 16,
+                        fontSize: 18,
                         color: AppColor.MAROON),
                   ),
                 ),
                 Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    '𑐖𑐶 𑐐𑐸 𑐣𑐵 ',
-                    style: TextStyle(
-                        fontFamily: 'Nexa',
-                        fontSize: 18,
-                        color: AppColor.MAROON),
+                  child: Center(
+                    child: Image.network(widget.lipiTrans!,
+                        width: 300, height: 80, fit: BoxFit.fitWidth),
                   ),
                 ),
               ],

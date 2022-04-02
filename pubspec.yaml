@@ -35,6 +35,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  get: ^4.6.1
+  audioplayers: ^0.20.1
+  cached_network_image: ^3.2.0
+  provider: ^6.0.2
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
+  material_floating_search_bar: ^0.3.7
 
 dev_dependencies:
   flutter_test:
@@ -122,6 +130,10 @@ flutter:
     - family: Nexa
       fonts:
         - asset: static/fonts/Nexa.ttf
+
+    - family: Devanagari
+      fonts:
+        - asset: static/fonts/Devanagari.ttf
     #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

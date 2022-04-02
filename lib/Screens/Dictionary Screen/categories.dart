@@ -2,20 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/Custom%20Widget/customCategoryCard.dart';
 
 import '../../Presentation/colors.dart';
-import 'Category Screen/animalPage.dart';
-import 'Category Screen/birdPage.dart';
-import 'Category Screen/bodyPartPage.dart';
-import 'Category Screen/colorPage.dart';
-import 'Category Screen/foodPage.dart';
-import 'Category Screen/greetingPage.dart';
-import 'Category Screen/moneyPage.dart';
-import 'Category Screen/numberPage.dart';
-import 'Category Screen/peoplePage.dart';
-import 'Category Screen/phrasePage.dart';
-import 'Category Screen/relationPage.dart';
-import 'Category Screen/tastePage.dart';
-import 'Category Screen/timePage.dart';
-import 'Category Screen/weatherPage.dart';
+import 'listPage.dart';
 
 class categoryPage extends StatefulWidget {
   const categoryPage({Key? key}) : super(key: key);
@@ -49,7 +36,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const animalPage()),
+                          builder: (context) => const listPage(
+                              appbar: "animals", category: "C1")),
                     );
                   },
                   child: CategoryCard(
@@ -61,7 +49,9 @@ class _categoryPageState extends State<categoryPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const birdPage()),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const listPage(appbar: "birds", category: "C2")),
                     );
                   },
                   child: CategoryCard(
@@ -78,7 +68,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const bodyPartPage()),
+                          builder: (context) => const listPage(
+                              appbar: "body parts", category: "C3")),
                     );
                   },
                   child: CategoryCard(
@@ -91,7 +82,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const colorPage()),
+                          builder: (context) =>
+                              const listPage(appbar: "colors", category: "C4")),
                     );
                   },
                   child: CategoryCard(
@@ -107,7 +99,9 @@ class _categoryPageState extends State<categoryPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const foodPage()),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const listPage(appbar: "foods", category: "C5")),
                     );
                   },
                   child: CategoryCard(
@@ -120,7 +114,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const greetingPage()),
+                          builder: (context) => const listPage(
+                              appbar: "greetings", category: "C6")),
                     );
                   },
                   child: CategoryCard(
@@ -137,7 +132,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const moneyPage()),
+                          builder: (context) =>
+                              const listPage(appbar: "money", category: "C7")),
                     );
                   },
                   child: CategoryCard(
@@ -150,7 +146,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const numberPage()),
+                          builder: (context) => const listPage(
+                              appbar: "numbers", category: "C8")),
                     );
                   },
                   child: CategoryCard(
@@ -167,7 +164,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const peoplePage()),
+                          builder: (context) =>
+                              const listPage(appbar: "people", category: "C9")),
                     );
                   },
                   child: CategoryCard(
@@ -180,7 +178,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const phrasePage()),
+                          builder: (context) => const listPage(
+                              appbar: "phrase", category: "C10")),
                     );
                   },
                   child: CategoryCard(
@@ -197,7 +196,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const relationPage()),
+                          builder: (context) => const listPage(
+                              appbar: "relations", category: "C11")),
                     );
                   },
                   child: CategoryCard(
@@ -210,7 +210,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const tastePage()),
+                          builder: (context) =>
+                              const listPage(appbar: "taste", category: "C12")),
                     );
                   },
                   child: CategoryCard(
@@ -226,7 +227,9 @@ class _categoryPageState extends State<categoryPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const timePage()),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const listPage(appbar: "time", category: "C13")),
                     );
                   },
                   child: CategoryCard(
@@ -239,7 +242,8 @@ class _categoryPageState extends State<categoryPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const weatherPage()),
+                          builder: (context) => const listPage(
+                              appbar: "weather", category: "C14")),
                     );
                   },
                   child: CategoryCard(
