@@ -1,8 +1,6 @@
 import 'dart:ffi';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:nepalbhasafyp/Presentation/colors.dart';
 import 'package:nepalbhasafyp/Screens/Favorite%20Screen/favouritePage.dart';
 

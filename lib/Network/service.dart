@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:nepalbhasafyp/Models/Lipi.dart';
 import '../Models/Phrase.dart';

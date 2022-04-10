@@ -10,6 +10,7 @@ class QuizModel {
   QuizModel({
     this.questionId,
     this.quizCategory,
+    this.quizLevel,
     this.questionText,
     this.questionAudio,
     this.questionImage,
@@ -21,6 +22,7 @@ class QuizModel {
 
   String? questionId;
   String? quizCategory;
+  String? quizLevel;
   String? questionText;
   dynamic questionAudio;
   dynamic questionImage;
@@ -31,6 +33,7 @@ class QuizModel {
 
   factory QuizModel.fromJson(Map<String, dynamic> json) => QuizModel(
         questionId: json["questionID"],
+        quizLevel: json["quizLevel"],
         quizCategory: json["quizCategory"],
         questionText: json["questionText"],
         questionAudio: json["questionAudio"],
@@ -43,6 +46,7 @@ class QuizModel {
 
   Map<String, dynamic> toJson() => {
         "questionID": questionId,
+        "quizLevel": quizLevel,
         "quizCategory": quizCategory,
         "questionText": questionText,
         "questionAudio": questionAudio,

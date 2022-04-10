@@ -40,9 +40,11 @@ dependencies:
   audioplayers: ^0.20.1
   cached_network_image: ^3.2.0
   provider: ^6.0.2
-  hive: ^2.1.0
-  hive_flutter: ^1.1.0
+  
   material_floating_search_bar: ^0.3.7
+  dio: ^4.0.6
+  dio_http_cache: ^0.3.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -70,29 +72,11 @@ flutter:
   assets:
     - static/Lakhey.png
     - static/Kumari.jpg
-    - static/homepage/dictionary.png
-    - static/homepage/history.png
-    - static/homepage/letterbook.png
-    - static/homepage/quiz.png
-    - static/homepage/test.gif
-    - static/homepage/feedback.png
-    - static/levelpage/beginner.png
-    - static/levelpage/intermmediate.png
-    - static/levelpage/advanced.png
-    - static/categorypage/animals.png
-    - static/categorypage/birds.png
-    - static/categorypage/body.png
-    - static/categorypage/color.png
-    - static/categorypage/food.png
-    - static/categorypage/greeting.png
-    - static/categorypage/money.png
-    - static/categorypage/number.png
-    - static/categorypage/people.png
-    - static/categorypage/phrase.png
-    - static/categorypage/relation.png
-    - static/categorypage/taste.png
-    - static/categorypage/time.png
-    - static/categorypage/weather.png
+    - static/homepage/
+    - static/levelpage/
+    - static/categorypage/
+    - static/quiz/
+    - assets/audio/test.mp3
     
   
   # assets:

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../../Custom Widget/customAppbar.dart';
 import '../../Presentation/colors.dart';
 import '../Dictionary Screen/dictionary.dart';
+import '../Dictionary Screen/levels.dart';
 import '../Letterbook Screen/letterBookPage.dart';
+import '../Quiz Screen/quizLevel.dart';
 
 class homePage extends StatefulWidget {
   const homePage({Key? key}) : super(key: key);
@@ -31,6 +33,8 @@ class _homePageState extends State<homePage> {
                 Row(
                   children: [
                     InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -96,6 +100,8 @@ class _homePageState extends State<homePage> {
                 Row(
                   children: [
                     InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -117,16 +123,27 @@ class _homePageState extends State<homePage> {
                         ),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                      height: 115,
-                      width: 155,
-                      // color: Colors.blueGrey,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('static/homepage/test.gif'),
-                          fit: BoxFit.fitHeight,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const quizLevelPage()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                        height: 115,
+                        width: 155,
+                        // color: Colors.blueGrey,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('static/homepage/quiz.png'),
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),
@@ -135,6 +152,8 @@ class _homePageState extends State<homePage> {
                 Row(
                   children: [
                     InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -154,15 +173,15 @@ class _homePageState extends State<homePage> {
                           )),
                     ),
                     Container(
-                        margin: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                        margin: EdgeInsets.fromLTRB(75, 10, 0, 0),
                         child: Text(
-                          'Test',
+                          'Quiz',
                           style: TextStyle(
                             fontFamily: 'Cinzel',
                             fontSize: 20,
                             color: AppColor.CREAM,
                           ),
-                        ))
+                        )),
                   ],
                 ),
 
@@ -170,21 +189,8 @@ class _homePageState extends State<homePage> {
                 Row(
                   children: [
                     Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.fromLTRB(30, 50, 30, 0),
-                      height: 115,
-                      width: 155,
-                      // color: Colors.blueGrey,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('static/homepage/quiz.png'),
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    ),
-                    Container(
                       alignment: Alignment.centerRight,
-                      margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                      margin: EdgeInsets.fromLTRB(20, 50, 0, 0),
                       height: 115,
                       width: 155,
                       // color: Colors.blueGrey,
@@ -199,26 +205,27 @@ class _homePageState extends State<homePage> {
                 ),
                 Row(
                   children: [
-                    Container(
-                        margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
-                        child: Text(
-                          'Lipi Quiz',
-                          style: TextStyle(
-                            fontFamily: 'Cinzel',
-                            fontSize: 20,
-                            color: AppColor.CREAM,
-                          ),
-                        )),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(90, 10, 0, 0),
-                        child: Text(
-                          'Feedback',
-                          style: TextStyle(
-                            fontFamily: 'Cinzel',
-                            fontSize: 20,
-                            color: AppColor.CREAM,
-                          ),
-                        ))
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const levelPage()),
+                        );
+                      },
+                      child: Container(
+                          margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
+                          child: Text(
+                            'Feedback',
+                            style: TextStyle(
+                              fontFamily: 'Cinzel',
+                              fontSize: 20,
+                              color: AppColor.CREAM,
+                            ),
+                          )),
+                    )
                   ],
                 ),
               ],

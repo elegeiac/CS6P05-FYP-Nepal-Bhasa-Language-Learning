@@ -2,8 +2,6 @@ import 'dart:ffi';
 import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:nepalbhasafyp/Custom%20Widget/audioWidget.dart';
 import 'package:nepalbhasafyp/Presentation/colors.dart';
 import 'package:nepalbhasafyp/Screens/Favorite%20Screen/favouritePage.dart';
 
@@ -34,24 +32,6 @@ class _WordCardState extends State<WordCard> {
   initAudio() {
     audioPlayer.play(widget.lipiNarration!);
   }
-  // late AudioPlayer audioPlayer;
-
-  // @override
-  // void initState() {
-  //   audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
-  //   super.initState();
-  // }
-
-  // // void playAudio(String narra) {
-  // //   audioPlayer.stop();
-  // //   audioPlayer.play(narration);
-  // // }
-
-  // @override
-  // void dispose() {
-  //   audioPlayer.dispose();
-  //   super.dispose();
-  // }
 
   bool toggle = false;
   @override
@@ -138,7 +118,6 @@ class _WordCardState extends State<WordCard> {
                             size: 30.0,
                           ),
                           onPressed: () {
-                            print(widget.lipiNarration!);
                             initAudio();
                           }),
                     ),

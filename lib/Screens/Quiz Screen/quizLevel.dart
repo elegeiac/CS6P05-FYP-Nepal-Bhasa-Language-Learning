@@ -1,22 +1,28 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../Custom Widget/customAppbar.dart';
 import '../../Custom Widget/customLevelCard.dart';
 import '../../Presentation/colors.dart';
-import 'Quiz Levels/advancedQuiz.dart';
-import 'Quiz Levels/beginnerQuiz.dart';
-import 'Quiz Levels/intermmeiateQuiz.dart';
+import 'Questions/intermmediateQues.dart';
+import 'Quiz Levels/advanceQuiz.dart';
+import 'Quiz Levels/begQuiz.dart';
+import 'Quiz Levels/interQuiz.dart';
 
-class levelPage extends StatefulWidget {
-  const levelPage({Key? key}) : super(key: key);
+class quizLevelPage extends StatefulWidget {
+  const quizLevelPage({Key? key}) : super(key: key);
 
   @override
-  _levelPageState createState() => _levelPageState();
+  _quizLevelPageState createState() => _quizLevelPageState();
 }
 
-class _levelPageState extends State<levelPage> {
+class _quizLevelPageState extends State<quizLevelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: "quiz",
+        automaticallyImplyLeading: true,
+      ),
       backgroundColor: AppColor.MAROON,
       body: SingleChildScrollView(
         child: Container(
@@ -36,8 +42,7 @@ class _levelPageState extends State<levelPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const beginnerQuiz()),
+                    MaterialPageRoute(builder: (context) => beginnerQuizPage()),
                   );
                 },
                 child: LevelCard(
@@ -49,7 +54,7 @@ class _levelPageState extends State<levelPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const intermmediateQuiz()),
+                        builder: (context) => intermmediateQuizPage()),
                   );
                 },
                 child: LevelCard(
@@ -60,8 +65,7 @@ class _levelPageState extends State<levelPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const advancedQuiz()),
+                    MaterialPageRoute(builder: (context) => advancedQuizPage()),
                   );
                 },
                 child: LevelCard(

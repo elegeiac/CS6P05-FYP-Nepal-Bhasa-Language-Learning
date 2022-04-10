@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/Custom%20Widget/customWordCard.dart';
 import 'package:nepalbhasafyp/Models/Phrase.dart';
