@@ -30,20 +30,18 @@ class _favouritePageState extends State<favouritePage> {
         body: SingleChildScrollView(
             child: Column(children: [
           FutureBuilder(
-              future: DictionaryService().getDictionary(),
+              future: DictionaryService().getAllBookmarkPost(),
               builder:
                   (context, AsyncSnapshot<List<DictionaryModel>> snapshot) {
                 if (snapshot.hasData) {
                   return Column(
                     children: List.generate(snapshot.data!.length, (index) {
                       final data = snapshot.data![index];
-                      return data.categoryId == widget.category
-                          ? WordCard(
-                              engMeaning: data.phraseEnglish,
-                              devTrans: data.phraseDevnagari,
-                              engTrans: data.phraseEnglish,
-                              lipiTrans: data.phraseLipi)
-                          : Container(height: 1);
+                      return WordCard(
+                          engMeaning: data.phraseEnglish,
+                          devTrans: data.phraseDevnagari,
+                          engTrans: data.phraseEnglish,
+                          lipiTrans: data.phraseLipi);
                     }),
                   );
                 } else if (snapshot.hasError) {

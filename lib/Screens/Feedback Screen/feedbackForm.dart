@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/presentation/colors.dart';
 
+import '../../Custom Widget/customFeedbackTextFormField.dart';
 import '../../Custom Widget/customPasswordTextFormField.dart';
 import '../../Custom Widget/customTextFormField.dart';
 import '../../Network/service.dart';
 import '../Home Screen/home.dart';
 
-class loginForm extends StatefulWidget {
-  const loginForm({Key? key}) : super(key: key);
+class feedbackForm extends StatefulWidget {
+  const feedbackForm({Key? key}) : super(key: key);
 
   @override
-  _loginFormState createState() => _loginFormState();
+  _feedbackFormState createState() => _feedbackFormState();
 }
 
-class _loginFormState extends State<loginForm> {
-  final loginFormKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  var loginResponse;
-  bool hidePassword = true;
-  bool clickLogin = false;
-  String? passwordInput;
-  String? emailInput;
+class _feedbackFormState extends State<feedbackForm> {
+  final feedbackFormKey = GlobalKey<FormState>();
+  final subjectController = TextEditingController();
+  final feedbackController = TextEditingController();
+  var feedbackResponse;
+
+  bool clickSend = false;
+  String? subjectInput;
+  String? descInput;
 
   final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: AppColor.MAROON,
@@ -38,17 +39,37 @@ class _loginFormState extends State<loginForm> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
+      height: 520,
+      width: 370,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(color: AppColor.MAROON.withOpacity(0.7)),
+          color: Colors.white.withOpacity(0.1)),
       child: Form(
-        key: loginFormKey,
+        key: feedbackFormKey,
         child: Column(
           children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+              child: Center(
+                child: Text(
+                  "Feedback",
+                  style: TextStyle(
+                    fontFamily: 'Cinzel',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: AppColor.CREAM,
+                  ),
+                ),
+              ),
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(40, 40, 0, 0),
+                  margin: EdgeInsets.fromLTRB(30, 40, 0, 5),
                   child: Text(
-                    "Email",
+                    "Subject",
                     style: TextStyle(
                       fontFamily: 'Nexa',
                       fontSize: 20,
@@ -57,10 +78,10 @@ class _loginFormState extends State<loginForm> {
                   ),
                 ),
                 CustomTextFormField(
-                  hint: "Please enter your email address",
-                  controller: emailController,
+                  hint: "Please enter your subject",
+                  controller: subjectController,
                   save: (data) {
-                    emailInput = data;
+                    subjectInput = data;
                   },
                   hideText: false,
                 ),
@@ -70,9 +91,9 @@ class _loginFormState extends State<loginForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(40, 20, 0, 0),
+                  margin: EdgeInsets.fromLTRB(30, 20, 0, 5),
                   child: Text(
-                    "Password",
+                    "Feedback",
                     style: TextStyle(
                       fontFamily: 'Nexa',
                       fontSize: 20,
@@ -80,11 +101,11 @@ class _loginFormState extends State<loginForm> {
                     ),
                   ),
                 ),
-                customPassTextFormField(
-                  hint: "Please enter your password",
-                  controller: passwordController,
+                CustomFeedbackTextFormField(
+                  hint: "Please enter your feedback",
+                  controller: feedbackController,
                   save: (data) {
-                    passwordInput = data;
+                    descInput = data;
                   },
                 ),
               ],
@@ -92,14 +113,14 @@ class _loginFormState extends State<loginForm> {
             Column(
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
                   child: ElevatedButton(
                       style: raisedButtonStyle,
                       onPressed: () {
-                        SignInFunction(context);
+                        SendFeedbackFunction(context);
                       },
                       child: Text(
-                        "SIGN IN",
+                        "Send Feedback",
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Cinzel',
@@ -115,20 +136,20 @@ class _loginFormState extends State<loginForm> {
     );
   }
 
-  SignInFunction(BuildContext context) async {
-    if (loginFormKey.currentState!.validate()) {
-      loginFormKey.currentState!.save();
-      clickLogin = true;
+  SendFeedbackFunction(BuildContext context) async {
+    if (feedbackFormKey.currentState!.validate()) {
+      feedbackFormKey.currentState!.save();
+      clickSend = true;
       setState(() {});
 
-      loginResponse = await LoginService.login(emailInput, passwordInput);
-      print('FIRST PRINT $loginResponse');
+      //feedbackResponse = await FeedbackService.login(subjectInput, descInput);
+      print('FIRST PRINT $feedbackResponse');
 
       // print('TOKEN = ${loginResponse['token']}');
 
       await Future.delayed(const Duration(seconds: 0));
-      print("HERE IS RESPONSE $loginResponse");
-      if (loginResponse == null) {
+      print("HERE IS RESPONSE $feedbackResponse");
+      if (feedbackResponse == null) {
         print("HERE AGAIN");
         await showDialog(
           context: context,
@@ -155,7 +176,7 @@ class _loginFormState extends State<loginForm> {
       }
     } else {
       loginError(context);
-      clickLogin = false;
+      clickSend = false;
     }
   }
 
@@ -168,8 +189,8 @@ class _loginFormState extends State<loginForm> {
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text("${loginResponse["status"].toUpperCase()}"),
-      content: Text("${loginResponse["message"]}"),
+      title: Text("${feedbackResponse["status"].toUpperCase()}"),
+      content: Text("${feedbackResponse["message"]}"),
       actions: [
         okButton,
       ],

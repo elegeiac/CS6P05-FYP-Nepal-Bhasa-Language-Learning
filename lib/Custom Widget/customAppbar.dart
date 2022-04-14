@@ -56,11 +56,45 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-          child: Icon(
-            Icons.more_vert,
-            color: AppColor.MAROON,
-          ),
+          child: PopupMenuButton(
+              color: AppColor.CREAM,
+              // add icon, by default "3 dot" icon
+              // icon: Icon(Icons.book)
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Text(
+                      "About App",
+                      style:
+                          TextStyle(fontFamily: 'Nexa', color: AppColor.MAROON),
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Text("Feedback",
+                        style: TextStyle(
+                            fontFamily: 'Nexa', color: AppColor.MAROON)),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 2,
+                    child: Text("Logout",
+                        style: TextStyle(
+                            fontFamily: 'Nexa', color: AppColor.MAROON)),
+                  ),
+                ];
+              },
+              onSelected: (value) {
+                if (value == 0) {
+                  print("My account menu is selected.");
+                } else if (value == 1) {
+                  print("Settings menu is selected.");
+                } else if (value == 2) {
+                  print("Logout menu is selected.");
+                }
+              }),
+          // margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+          // child: IconButton(icon: Icon(Icons.more_vert, color: AppColor.MAROON,), onPressed: () {}),
         ),
       ],
       backgroundColor: AppColor.CREAM,

@@ -3,6 +3,7 @@ import '../../Custom Widget/customAppbar.dart';
 import '../../Presentation/colors.dart';
 import '../Dictionary Screen/dictionary.dart';
 import '../Dictionary Screen/levels.dart';
+import '../Feedback Screen/feedbackPage.dart';
 import '../Letterbook Screen/letterBookPage.dart';
 import '../Quiz Screen/quizLevel.dart';
 
@@ -74,21 +75,21 @@ class _homePageState extends State<homePage> {
                 Row(
                   children: [
                     Container(
-                        margin: EdgeInsets.fromLTRB(50, 10, 0, 0),
+                        margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
                         child: Text(
                           'Dictionary',
                           style: TextStyle(
-                            fontFamily: 'Cinzel',
+                            fontFamily: 'Nexa',
                             fontSize: 20,
                             color: AppColor.CREAM,
                           ),
                         )),
                     Container(
-                        margin: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                        margin: EdgeInsets.fromLTRB(100, 10, 0, 0),
                         child: Text(
                           'History',
                           style: TextStyle(
-                            fontFamily: 'Cinzel',
+                            fontFamily: 'Nexa',
                             fontSize: 20,
                             color: AppColor.CREAM,
                           ),
@@ -162,22 +163,22 @@ class _homePageState extends State<homePage> {
                         );
                       },
                       child: Container(
-                          margin: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                          margin: EdgeInsets.fromLTRB(35, 10, 0, 0),
                           child: Text(
                             'Lipi Letterbook',
                             style: TextStyle(
-                              fontFamily: 'Cinzel',
+                              fontFamily: 'Nexa',
                               fontSize: 20,
                               color: AppColor.CREAM,
                             ),
                           )),
                     ),
                     Container(
-                        margin: EdgeInsets.fromLTRB(75, 10, 0, 0),
+                        margin: EdgeInsets.fromLTRB(90, 10, 0, 0),
                         child: Text(
                           'Quiz',
                           style: TextStyle(
-                            fontFamily: 'Cinzel',
+                            fontFamily: 'Nexa',
                             fontSize: 20,
                             color: AppColor.CREAM,
                           ),
@@ -212,15 +213,15 @@ class _homePageState extends State<homePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const levelPage()),
+                              builder: (context) => const feedbackPage()),
                         );
                       },
                       child: Container(
-                          margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
+                          margin: EdgeInsets.fromLTRB(55, 10, 0, 0),
                           child: Text(
                             'Feedback',
                             style: TextStyle(
-                              fontFamily: 'Cinzel',
+                              fontFamily: 'Nexa',
                               fontSize: 20,
                               color: AppColor.CREAM,
                             ),

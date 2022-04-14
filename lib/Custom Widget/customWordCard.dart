@@ -6,6 +6,7 @@ import 'package:nepalbhasafyp/Presentation/colors.dart';
 import 'package:nepalbhasafyp/Screens/Favorite%20Screen/favouritePage.dart';
 
 import '../Models/Phrase.dart';
+import '../Network/token_shared_preferences.dart';
 
 class WordCard extends StatefulWidget {
   final String? engMeaning;
@@ -13,6 +14,7 @@ class WordCard extends StatefulWidget {
   final String? engTrans;
   final String? lipiTrans;
   final String? lipiNarration;
+  final Function()? fav;
 
   // final AudioElement? narration;
   const WordCard({
@@ -21,6 +23,7 @@ class WordCard extends StatefulWidget {
     this.engTrans,
     this.lipiTrans,
     this.lipiNarration,
+    this.fav,
   });
   @override
   _WordCardState createState() => _WordCardState();
@@ -71,19 +74,16 @@ class _WordCardState extends State<WordCard> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(190, 0, 0, 0),
-                      child: IconButton(
+                        margin: EdgeInsets.fromLTRB(190, 0, 0, 0),
+                        // child: BookmarkButton(phrase: Phrase);
+                        child: IconButton(
                           icon: toggle
                               ? Icon(Icons.bookmark,
                                   size: 28.0, color: AppColor.MAROON)
                               : Icon(Icons.bookmark_add_outlined,
                                   size: 28.0, color: AppColor.MAROON),
-                          onPressed: () {
-                            setState(() {
-                              toggle = !toggle;
-                            });
-                          }),
-                    )
+                          onPressed: widget.fav,
+                        ))
                   ],
                 ),
                 Container(
@@ -168,3 +168,57 @@ class _WordCardState extends State<WordCard> {
     );
   }
 }
+
+// class BookmarkButton extends StatefulWidget {
+//   final DictionaryModel phrase;
+//   const BookmarkButton({Key? key, required this.phrase}) : super(key: key);
+
+//   @override
+//   State<BookmarkButton> createState() => _BookmarkButtonState();
+// }
+
+// class _BookmarkButtonState extends State<BookmarkButton> {
+//   String user = '';
+//   @override
+//   void initState() {
+//     _getUserId();
+//     super.initState();
+//   }
+
+//   _getUserId() async {
+//     String userToken =
+//         await TokenSharedPrefernces.instance.getTokenValue("userid");
+//     setState(() {
+//       user = userToken;
+//     });
+//   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   int? userToken = int.tryParse(user);
+  //   return BlocConsumer<ArtFormBloc, ArtFormState>(
+  //     listener: (context, state) {
+  //       String response = '';
+  //       state.failureOrSuccess?.fold(
+  //           (l) => null, (r) => debugPrint('thisisthevalue ${r.toString()}'));
+  //     },
+  //     builder: (context, state) {
+  //       return BlocBuilder<ArtFormBloc, ArtFormState>(
+  //         builder: (context, state) {
+  //           return IconButton(
+  //             onPressed: () {
+  //               context
+  //                   .read<ArtFormBloc>()
+  //                   .add(ArtFormEvent.changedId(id: widget.art.id));
+  //               context.read<ArtFormBloc>().add(ArtFormEvent.pressedBookmark());
+  //             },
+  //             icon: Icon(Icons.bookmark_add),
+  //             iconSize: 30,
+  //             color: Colors.red,
+  //           );
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
+// }

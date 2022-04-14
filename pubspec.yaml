@@ -44,6 +44,8 @@ dependencies:
   material_floating_search_bar: ^0.3.7
   dio: ^4.0.6
   dio_http_cache: ^0.3.0
+  json_serializable: ^4.1.4
+  shared_preferences: ^2.0.13
   
 
 dev_dependencies:

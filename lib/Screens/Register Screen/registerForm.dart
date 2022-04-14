@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Custom Widget/customPasswordTextFormField.dart';
 import '../../Custom Widget/customTextFormField.dart';
+import '../../Network/service.dart';
 import '../../Presentation/colors.dart';
 import '../Login Screen/login.dart';
 
@@ -18,6 +19,8 @@ class _registerFormState extends State<registerForm> {
   final emailController = TextEditingController();
   final phoneNumController = TextEditingController();
   final passwordController = TextEditingController();
+  var RegisterResponse;
+  bool clickRegister = false;
 
   // final conPasswordController = TextEditingController();
 
@@ -147,14 +150,7 @@ class _registerFormState extends State<registerForm> {
                   child: ElevatedButton(
                       style: raisedButtonStyle,
                       onPressed: () {
-                        if (registerFormKey.currentState!.validate()) {
-                          registerFormKey.currentState!.save();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const loginPage()),
-                          );
-                        }
+                        SignUpFunction(context);
                       },
                       child: Text(
                         "REGISTER",
@@ -170,6 +166,76 @@ class _registerFormState extends State<registerForm> {
           ],
         ),
       ),
+    );
+  }
+
+  SignUpFunction(BuildContext context) async {
+    print("2here");
+    if (registerFormKey.currentState!.validate()) {
+      print("1here");
+      registerFormKey.currentState!.save();
+
+      setState(() {
+        clickRegister = true;
+      });
+      print(clickRegister);
+      print("1here");
+      RegisterResponse = await RegisterService.register(
+          fnameInput, phoneNumInput, emailInput, passwordInput);
+      print('FIRST PRINT $RegisterResponse');
+      if (RegisterResponse == null) {
+        print("HERE AGAIN");
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Error'),
+            content: const Text(
+                'Your register credentitals are invalid. Please check and try again.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(); // dismisses only the dialog and returns nothing
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => loginPage()));
+      }
+
+      // print('ACCESS TOKEN = ${registerResponse['access_token']}');
+      //   print('REFRESH TOKEN = ${registerResponse["refresh_token"]}');
+
+    } else {
+      loginError(context);
+      clickRegister = false;
+    }
+  }
+
+  loginError(BuildContext context) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("${RegisterResponse["status"].toUpperCase()}"),
+      content: Text("${RegisterResponse["message"]}"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

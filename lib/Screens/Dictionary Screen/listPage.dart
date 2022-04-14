@@ -44,6 +44,11 @@ class _listPageState extends State<listPage> {
                               engTrans: data.phraseEnglish,
                               lipiTrans: data.phraseLipi,
                               lipiNarration: data.phraseNarration,
+                              fav: () {
+                                print("HERREEEEEEEEEEE");
+                                DictionaryService()
+                                    .postBookmark(data: data.phraseId);
+                              },
                             )
                           : Container(height: 1);
                     }),
