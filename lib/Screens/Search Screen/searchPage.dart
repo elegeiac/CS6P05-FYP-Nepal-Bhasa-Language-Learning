@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/Custom%20Widget/customSearchBar.dart';
 import 'package:nepalbhasafyp/Custom%20Widget/customWordCard.dart';
@@ -7,6 +8,7 @@ import 'package:nepalbhasafyp/Models/Phrase.dart';
 import 'package:nepalbhasafyp/Network/service.dart';
 import 'package:characters/characters.dart';
 import 'package:http/http.dart' as http;
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../../Custom Widget/customAppbar.dart';
 import '../../../Presentation/colors.dart';
 import '../../Models/searchPhraseModel.dart';
@@ -23,6 +25,9 @@ class searchPage extends StatefulWidget {
 void searchBook(String query) {}
 
 class _searchPageState extends State<searchPage> {
+  late stt.SpeechToText _speech;
+  bool _isListening = false;
+  double _confidence = 1.0;
   List<Posts> _list = [];
   List<Posts> _search = [];
   var loading = false;
@@ -67,6 +72,7 @@ class _searchPageState extends State<searchPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _speech = stt.SpeechToText();
     fetchData();
   }
 
@@ -104,14 +110,23 @@ class _searchPageState extends State<searchPage> {
                         filled: true,
                         fillColor: AppColor.CREAM),
                   ),
-                  trailing: IconButton(
-                    color: AppColor.MAROON,
-                    onPressed: () {
-                      controller.clear();
-                      onSearch('');
-                    },
-                    icon: Icon(Icons.cancel),
-                  ),
+                  trailing: Wrap(children: [
+                    IconButton(
+                      color: AppColor.MAROON,
+                      onPressed: () {
+                        _listen();
+                      },
+                      icon: Icon(_isListening ? Icons.mic : Icons.mic_none),
+                    ),
+                    IconButton(
+                      color: AppColor.MAROON,
+                      onPressed: () {
+                        controller.clear();
+                        onSearch('');
+                      },
+                      icon: Icon(Icons.cancel),
+                    ),
+                  ]),
                 ),
               ),
             ),
@@ -152,5 +167,38 @@ class _searchPageState extends State<searchPage> {
         ),
       ),
     );
+  }
+
+  void _listen() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize(
+          onStatus: (val) => print('onStatus: $val'),
+          onError: (val) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                duration: Duration(seconds: 2),
+                backgroundColor: Colors.red[700],
+                content: Text(
+                  "Could not recognize your voice",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: AppColor.CREAM, fontFamily: 'Nexa'),
+                ),
+              )));
+      if (available) {
+        setState(() => _isListening = true);
+        _speech.listen(
+          onResult: (val) => setState(() {
+            print(val);
+            controller.text = val.recognizedWords;
+            onSearch(val.recognizedWords);
+
+            if (val.hasConfidenceRating && val.confidence > 10) {
+              _confidence = val.confidence;
+            }
+          }),
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
   }
 }

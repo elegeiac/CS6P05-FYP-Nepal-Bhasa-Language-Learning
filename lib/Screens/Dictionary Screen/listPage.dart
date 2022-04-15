@@ -39,7 +39,7 @@ class _listPageState extends State<listPage> {
                       final data = snapshot.data![index];
                       return data.categoryId == widget.category
                           ? WordCard(
-                              engMeaning: data.phraseEnglish,
+                              engMeaning: data.phraseMeaning,
                               devTrans: data.phraseDevnagari,
                               engTrans: data.phraseEnglish,
                               lipiTrans: data.phraseLipi,

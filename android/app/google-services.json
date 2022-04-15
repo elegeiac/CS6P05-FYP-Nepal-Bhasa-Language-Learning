@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449911941250",
+    "project_id": "nepal-bhasa-language-learning",
+    "storage_bucket": "nepal-bhasa-language-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449911941250:android:202cc68b80608871c02c9b",
+        "android_client_info": {
+          "package_name": "com.example.nepalbhasafyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449911941250-phrhrbqjiocbipfmuja554j0n00nid2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwjAlNLWkwOfWUAzBhh-8m_XwBb6J30xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449911941250-phrhrbqjiocbipfmuja554j0n00nid2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

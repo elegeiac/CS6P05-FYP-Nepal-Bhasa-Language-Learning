@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Presentation/colors.dart';
 import '../Screens/Favorite Screen/favouritePage.dart';
 import '../Screens/Search Screen/searchPage.dart';
+import '../Screens/test.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -90,6 +91,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 } else if (value == 1) {
                   print("Settings menu is selected.");
                 } else if (value == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SpeechScreen()),
+                  );
                   print("Logout menu is selected.");
                 }
               }),

@@ -119,6 +119,18 @@ class _WordCardState extends State<WordCard> {
                           ),
                           onPressed: () {
                             initAudio();
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              duration: Duration(seconds: 1),
+                              backgroundColor: Colors.blueGrey[200],
+                              content: Text(
+                                "Playing Narration",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: AppColor.MAROON,
+                                    fontFamily: 'Nexa'),
+                              ),
+                            ));
                           }),
                     ),
                   ],
