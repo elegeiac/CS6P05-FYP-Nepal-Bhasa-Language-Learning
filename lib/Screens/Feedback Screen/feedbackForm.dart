@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/presentation/colors.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../Custom Widget/customFeedbackTextFormField.dart';
 import '../../Custom Widget/customPasswordTextFormField.dart';
 import '../../Custom Widget/customTextFormField.dart';
@@ -39,7 +39,7 @@ class _feedbackFormState extends State<feedbackForm> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: 520,
+      height: 570,
       width: 370,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
@@ -113,12 +113,9 @@ class _feedbackFormState extends State<feedbackForm> {
             Column(
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: ElevatedButton(
                       style: raisedButtonStyle,
-                      onPressed: () {
-                        SendFeedbackFunction(context);
-                      },
                       child: Text(
                         "Send Feedback",
                         style: TextStyle(
@@ -126,81 +123,67 @@ class _feedbackFormState extends State<feedbackForm> {
                           fontFamily: 'Cinzel',
                           fontWeight: FontWeight.bold,
                         ),
-                      )),
+                      ),
+                      onPressed: () async {
+                        if (feedbackFormKey.currentState!.validate()) {
+                          feedbackFormKey.currentState!.save();
+                          FeedbackService.sendFeeback(
+                              subject: subjectInput, description: descInput);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: Duration(seconds: 2),
+                            backgroundColor: Colors.blueGrey[200],
+                            content: Text(
+                              "Thank you for your feedback!",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColor.MAROON,
+                                  fontFamily: 'Nexa'),
+                            ),
+                          ));
+                        }
+                        subjectController.clear();
+                        feedbackController.clear();
+                      }),
+
+                  // SendFeedbackFunction(context);
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: TextButton(
+                      child: Text(
+                        "Send as Email",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Nexa',
+                          color: AppColor.CREAM,
+                        ),
+                      ),
+                      onPressed: () async {
+                        if (feedbackFormKey.currentState!.validate()) {
+                          feedbackFormKey.currentState!.save();
+
+                          const toEmail = 'ushaan2000@gmail.com';
+                          final subject = "$subjectInput";
+                          final message = '$descInput';
+                          final url =
+                              'mailto: $toEmail?subject=$subject&body=$message';
+                          if (await canLaunch(url)) {
+                            await launch(
+                              url,
+                              forceSafariVC: false,
+                            );
+                          }
+                        }
+                      }),
+
+                  // SendFeedbackFunction(context);
                 )
               ],
             ),
           ],
         ),
       ),
-    );
-  }
-
-  SendFeedbackFunction(BuildContext context) async {
-    if (feedbackFormKey.currentState!.validate()) {
-      feedbackFormKey.currentState!.save();
-      clickSend = true;
-      setState(() {});
-
-      //feedbackResponse = await FeedbackService.login(subjectInput, descInput);
-      print('FIRST PRINT $feedbackResponse');
-
-      // print('TOKEN = ${loginResponse['token']}');
-
-      await Future.delayed(const Duration(seconds: 0));
-      print("HERE IS RESPONSE $feedbackResponse");
-      if (feedbackResponse == null) {
-        print("HERE AGAIN");
-        await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Error'),
-            content: const Text(
-                'Your login credentitals are invalid. Please check and try again.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .pop(); // dismisses only the dialog and returns nothing
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const homePage()),
-        );
-      }
-    } else {
-      loginError(context);
-      clickSend = false;
-    }
-  }
-
-  loginError(BuildContext context) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: Text("${feedbackResponse["status"].toUpperCase()}"),
-      content: Text("${feedbackResponse["message"]}"),
-      actions: [
-        okButton,
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
     );
   }
 }

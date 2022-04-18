@@ -59,6 +59,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           child: PopupMenuButton(
               color: AppColor.CREAM,
+              offset: Offset(0, 55),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+              ),
               // add icon, by default "3 dot" icon
               // icon: Icon(Icons.book)
               itemBuilder: (context) {

@@ -97,6 +97,11 @@ class _loginFormState extends State<loginForm> {
                       style: raisedButtonStyle,
                       onPressed: () {
                         SignInFunction(context);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const homePage()),
+                        // );
                       },
                       child: Text(
                         "SIGN IN",

@@ -43,21 +43,6 @@ class DictionaryService {
     }
   }
 
-  Future<List<QuizModel>> getQuiz() async {
-    try {
-      final reqQuiz =
-          await http.get(Uri.parse("${FypEnv.URL_PREFIX}/quizList"));
-
-      if (reqQuiz.statusCode == 200) {
-        final quizModel = quizModelFromJson(utf8.decode(reqQuiz.bodyBytes));
-        return quizModel;
-      } else {
-        throw Exception('Failed to load dictionary');
-      }
-    } on SocketException catch (_) {
-      return Future.error('No Network Found');
-    }
-  }
 
   Future<String> postBookmark({required String? data}) async {
     print('USER ID: $data');
@@ -111,6 +96,38 @@ class DictionaryService {
     } else {
       throw Exception('Failed to load dictionary');
     }
+  }
+}
+
+class FeedbackService {
+  static Future sendFeeback(
+      {required String? subject, required String? description}) async {
+    print("We are here");
+    print(subject);
+    print(description);
+    // var variable = DateTime.now();
+    // String dateOnly = variable.();
+    String userToken =
+        await TokenSharedPrefernces.instance.getTokenValue("token");
+    print('USER TOKEN: $userToken');
+    Map<String, String> headers = {
+      "Authorization": "Token ${userToken}",
+    };
+    final feebackUrl = Uri.parse('${FypEnv.POST_FEEDBACK_URL_PREFIX}');
+    final response = await http.post(
+      feebackUrl,
+      headers: headers,
+      body: {'subject': '$subject', 'description': '$description'},
+    );
+
+    print(response.statusCode as int);
+
+    if ((response.statusCode as int) == 200) {
+      print(response.body);
+      return response.body;
+    }
+
+    return null;
   }
 }
 
