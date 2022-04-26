@@ -97,11 +97,6 @@ class _loginFormState extends State<loginForm> {
                       style: raisedButtonStyle,
                       onPressed: () {
                         SignInFunction(context);
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const homePage()),
-                        // );
                       },
                       child: Text(
                         "SIGN IN",
@@ -134,7 +129,6 @@ class _loginFormState extends State<loginForm> {
       await Future.delayed(const Duration(seconds: 0));
       print("HERE IS RESPONSE $loginResponse");
       if (loginResponse == null) {
-        print("HERE AGAIN");
         await showDialog(
           context: context,
           builder: (context) => AlertDialog(

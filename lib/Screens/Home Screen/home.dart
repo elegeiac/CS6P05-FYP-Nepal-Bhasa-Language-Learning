@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepalbhasafyp/Screens/History%20Screen/historyPage.dart';
 import '../../Custom Widget/customAppbar.dart';
 import '../../Presentation/colors.dart';
 import '../Dictionary Screen/dictionary.dart';
@@ -57,16 +58,27 @@ class _homePageState extends State<homePage> {
                         ),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                      height: 115,
-                      width: 155,
-                      // color: Colors.blueGrey,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('static/homepage/history.png'),
-                          fit: BoxFit.fitHeight,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const historyPage()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                        height: 115,
+                        width: 155,
+                        // color: Colors.blueGrey,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('static/homepage/history.png'),
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),
@@ -74,26 +86,48 @@ class _homePageState extends State<homePage> {
                 ),
                 Row(
                   children: [
-                    Container(
-                        margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
-                        child: Text(
-                          'Dictionary',
-                          style: TextStyle(
-                            fontFamily: 'Nexa',
-                            fontSize: 20,
-                            color: AppColor.CREAM,
-                          ),
-                        )),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(100, 10, 0, 0),
-                        child: Text(
-                          'History',
-                          style: TextStyle(
-                            fontFamily: 'Nexa',
-                            fontSize: 20,
-                            color: AppColor.CREAM,
-                          ),
-                        ))
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const dictionaryPage()),
+                        );
+                      },
+                      child: Container(
+                          margin: EdgeInsets.fromLTRB(60, 10, 0, 0),
+                          child: Text(
+                            'Dictionary',
+                            style: TextStyle(
+                              fontFamily: 'Nexa',
+                              fontSize: 20,
+                              color: AppColor.CREAM,
+                            ),
+                          )),
+                    ),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const historyPage()),
+                        );
+                      },
+                      child: Container(
+                          margin: EdgeInsets.fromLTRB(100, 10, 0, 0),
+                          child: Text(
+                            'History',
+                            style: TextStyle(
+                              fontFamily: 'Nexa',
+                              fontSize: 20,
+                              color: AppColor.CREAM,
+                            ),
+                          )),
+                    )
                   ],
                 ),
 

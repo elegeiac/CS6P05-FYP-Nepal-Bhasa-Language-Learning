@@ -24,7 +24,7 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
     super.initState();
     // create this only once
     audioCache = AudioCache(
-        prefix: "assets/audio/",
+        prefix: "assets/audio/intQuiz/",
         fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
 
@@ -44,7 +44,7 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
         _totalScore++;
         correctOptionSelected = true;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 1000),
           backgroundColor: Colors.green[700],
           content: Text(
             'Correct Answer',
@@ -99,7 +99,7 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
     return Scaffold(
       backgroundColor: AppColor.MAROON,
       appBar: CustomAppBar(
-        title: "beginner",
+        title: "advanced",
         automaticallyImplyLeading: true,
       ),
       body: Center(
@@ -125,7 +125,7 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
                   padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width * 0.95,
-                  height: 200,
+                  height: 230,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: AppColor.CREAM,

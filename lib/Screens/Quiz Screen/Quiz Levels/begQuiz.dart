@@ -24,7 +24,7 @@ class _beginnerQuizPageState extends State<beginnerQuizPage> {
     super.initState();
     // create this only once
     audioCache = AudioCache(
-        prefix: "assets/audio/",
+        prefix: "assets/audio/begQuiz/",
         fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
 
@@ -125,7 +125,7 @@ class _beginnerQuizPageState extends State<beginnerQuizPage> {
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
                   padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width * 0.95,
-                  height: 200,
+                  height: 230,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: AppColor.CREAM,

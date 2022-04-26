@@ -21,10 +21,15 @@ class Option extends StatelessWidget {
           border: Border.all(color: optionColor!, width: 3.0),
           borderRadius: BorderRadius.circular(30.0),
         ),
-        child: Text(
-          optionText!,
-          style: TextStyle(
-              fontSize: 18.0, fontFamily: 'Nexa', color: AppColor.MAROON),
+        child: Center(
+          child: Text(
+            optionText!,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                fontFamily: 'Cinzel',
+                color: AppColor.MAROON),
+          ),
         ),
       ),
     );

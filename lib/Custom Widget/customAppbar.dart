@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nepalbhasafyp/Network/service.dart';
+import 'package:nepalbhasafyp/Screens/Login%20Screen/login.dart';
 
+import '../Network/token_shared_preferences.dart';
 import '../Presentation/colors.dart';
 import '../Screens/Favorite Screen/favouritePage.dart';
 import '../Screens/Search Screen/searchPage.dart';
@@ -28,6 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         InkWell(
           onTap: () {
+            // DictionaryService().getAllBookmarkPost();
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -97,9 +101,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 } else if (value == 1) {
                   print("Settings menu is selected.");
                 } else if (value == 2) {
+                  TokenSharedPrefernces.instance.removeToken("token");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SpeechScreen()),
+                    MaterialPageRoute(builder: (context) => loginPage()),
                   );
                   print("Logout menu is selected.");
                 }

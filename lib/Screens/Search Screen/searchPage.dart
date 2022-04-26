@@ -60,7 +60,10 @@ class _searchPageState extends State<searchPage> {
     }
 
     _list.forEach((f) {
-      if (f.phraseEnglish!.contains(text.toLowerCase()) ||
+      if (f.phraseEnglish!
+              .toString()
+              .toLowerCase()
+              .contains(text.toLowerCase()) ||
           f.phraseMeaning.toString().toLowerCase().contains(text.toLowerCase()))
         _search.add(f);
     });
@@ -141,12 +144,15 @@ class _searchPageState extends State<searchPage> {
                             itemBuilder: (context, i) {
                               final b = _search[i];
                               return WordCard(
-                                engMeaning: b.phraseMeaning,
-                                devTrans: b.phraseDevnagari,
-                                engTrans: b.phraseEnglish,
-                                lipiTrans: b.phraseLipi,
-                                lipiNarration: b.phraseNarration,
-                              );
+                                  engMeaning: b.phraseMeaning,
+                                  devTrans: b.phraseDevnagari,
+                                  engTrans: b.phraseEnglish,
+                                  lipiTrans: b.phraseLipi,
+                                  lipiNarration: b.phraseNarration,
+                                  fav: () {
+                                    DictionaryService()
+                                        .postBookmark(data: b.phraseId);
+                                  });
                             },
                           )
                         : ListView.builder(
@@ -154,12 +160,15 @@ class _searchPageState extends State<searchPage> {
                             itemBuilder: (context, i) {
                               final a = _list[i];
                               return WordCard(
-                                engMeaning: a.phraseMeaning,
-                                devTrans: a.phraseDevnagari,
-                                engTrans: a.phraseEnglish,
-                                lipiTrans: a.phraseLipi,
-                                lipiNarration: a.phraseNarration,
-                              );
+                                  engMeaning: a.phraseMeaning,
+                                  devTrans: a.phraseDevnagari,
+                                  engTrans: a.phraseEnglish,
+                                  lipiTrans: a.phraseLipi,
+                                  lipiNarration: a.phraseNarration,
+                                  fav: () {
+                                    DictionaryService()
+                                        .postBookmark(data: a.phraseId);
+                                  });
                             },
                           ),
                   ),

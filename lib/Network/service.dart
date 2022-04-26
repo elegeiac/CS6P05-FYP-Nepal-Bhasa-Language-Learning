@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:nepalbhasafyp/Models/Bookmark.dart';
 import 'package:nepalbhasafyp/Models/Lipi.dart';
 import 'package:nepalbhasafyp/Network/token_shared_preferences.dart';
 import '../Models/Phrase.dart';
@@ -43,7 +44,6 @@ class DictionaryService {
     }
   }
 
-
   Future<String> postBookmark({required String? data}) async {
     print('USER ID: $data');
     String userToken =
@@ -72,29 +72,33 @@ class DictionaryService {
     }
   }
 
-  Future<List<DictionaryModel>> getAllBookmarkPost() async {
-    String userToken =
-        await TokenSharedPrefernces.instance.getTokenValue("token");
-    Map<String, String> headers = {
-      "content-type": "application/json",
-      "Authorization": "Token ${userToken}",
-    };
-    print("TOKEN ==== $userToken");
+  Future<List<GetBookmarkModel>> getAllBookmarkPost() async {
+    print("we are here");
+    try {
+      String userToken =
+          await TokenSharedPrefernces.instance.getTokenValue("token");
+      Map<String, String> headers = {
+        "content-type": "application/json",
+        "Authorization": "Token ${userToken}",
+      };
+      print("TOKEN ==== $userToken");
 
-    final response = await http.get(
-      Uri.parse(
-        '${FypEnv.GET_BOOKMARK_URL_PREFIX}',
-      ),
-      headers: headers,
-    );
-
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body) as List;
-      return jsonData
-          .map((e) => DictionaryModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-    } else {
-      throw Exception('Failed to load dictionary');
+      final response = await http.get(
+        Uri.parse(
+          '${FypEnv.GET_BOOKMARK_URL_PREFIX}',
+        ),
+        headers: headers,
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        final jsonData = getBookmarkModelFromJson(response.body);
+        print(jsonData);
+        return jsonData;
+      } else {
+        throw Exception('Failed to load dictionary');
+      }
+    } on SocketException catch (_) {
+      return Future.error('No Network Found');
     }
   }
 }
@@ -159,7 +163,6 @@ class LoginService {
 
 class RegisterService {
   static Future register(fullName, phoneNumber, email, password) async {
-    print("hereagain4");
     var requestBody = {
       'email': '$email',
       'user_name': '$fullName',
@@ -167,18 +170,15 @@ class RegisterService {
       'password': '$password'
     };
     var decodedResponse;
-    print("hereagain5");
     //sending API request for register
     final response = await http.post(Uri.parse(FypEnv.REGISTER_URL_PREFIX),
         headers: <String, String>{
           'Content_Type': 'application/json',
         },
         body: requestBody);
-    print("hereagain1");
+    print("Hi----------");
     //if register is successful
-
     print(response.statusCode);
-    print("hereagain1");
     if (response.statusCode == 201) {
       decodedResponse = json.decode(response.body);
       return decodedResponse;

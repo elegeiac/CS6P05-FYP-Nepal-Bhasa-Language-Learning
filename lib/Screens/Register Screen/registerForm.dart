@@ -170,21 +170,18 @@ class _registerFormState extends State<registerForm> {
   }
 
   SignUpFunction(BuildContext context) async {
-    print("2here");
     if (registerFormKey.currentState!.validate()) {
-      print("1here");
       registerFormKey.currentState!.save();
 
       setState(() {
         clickRegister = true;
       });
       print(clickRegister);
-      print("1here");
+
       RegisterResponse = await RegisterService.register(
           fnameInput, phoneNumInput, emailInput, passwordInput);
       print('FIRST PRINT $RegisterResponse');
       if (RegisterResponse == null) {
-        print("HERE AGAIN");
         await showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -203,12 +200,29 @@ class _registerFormState extends State<registerForm> {
           ),
         );
       } else {
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: AppColor.CREAM,
+            title: const Text(
+              'Registration Successful',
+              style: TextStyle(color: AppColor.MAROON),
+            ),
+            content: const Text('You have been successfully registered.',
+                style: TextStyle(color: AppColor.MAROON)),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(); // dismisses only the dialog and returns nothing
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
         Navigator.push(context, MaterialPageRoute(builder: (_) => loginPage()));
       }
-
-      // print('ACCESS TOKEN = ${registerResponse['access_token']}');
-      //   print('REFRESH TOKEN = ${registerResponse["refresh_token"]}');
-
     } else {
       loginError(context);
       clickRegister = false;
