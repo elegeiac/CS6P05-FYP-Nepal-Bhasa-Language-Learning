@@ -4,6 +4,7 @@ import 'package:nepalbhasafyp/Screens/Login%20Screen/login.dart';
 
 import '../Network/token_shared_preferences.dart';
 import '../Presentation/colors.dart';
+import '../Screens/About Screen/about.dart';
 import '../Screens/Favorite Screen/favouritePage.dart';
 import '../Screens/Feedback Screen/feedbackPage.dart';
 import '../Screens/History Screen/historyPage.dart';
@@ -101,7 +102,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (value == 0) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => historyPage()),
+                    MaterialPageRoute(builder: (context) => aboutPage()),
                   );
                   print("About page is selected.");
                 } else if (value == 1) {

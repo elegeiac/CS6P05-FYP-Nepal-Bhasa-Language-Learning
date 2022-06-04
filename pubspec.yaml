@@ -87,6 +87,7 @@ flutter:
   assets:
     - static/Lakhey.png
     - static/Kumari.jpg
+    - static/Client.jpg
     - static/homepage/
     - static/levelpage/
     - static/categorypage/
@@ -139,6 +140,10 @@ flutter:
     - family: Devanagari
       fonts:
         - asset: static/fonts/Devanagari.ttf
+    
+    - family: Comic
+      fonts:
+        - asset: static/fonts/Comic.ttf
     #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
