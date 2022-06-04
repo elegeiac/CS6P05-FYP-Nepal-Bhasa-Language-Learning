@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nepalbhasafyp/Custom%20Widget/customAppbar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../Presentation/colors.dart';
+import 'downloadingDialog.dart';
 
 class historyPage extends StatefulWidget {
   const historyPage({Key? key}) : super(key: key);
@@ -123,15 +124,24 @@ class _historyPageState extends State<historyPage> {
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                       child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColor.CREAM,
+                          ),
                           child: Text(
                             "Download History Document",
                             style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Cinzel',
+                              color: AppColor.MAROON,
+                              fontSize: 14,
+                              fontFamily: 'Nexa',
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          onPressed: () async {}),
+                          onPressed: () async {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const DownloadingDialog(),
+                            );
+                          }),
 
                       // SendFeedbackFunction(context);
                     ),

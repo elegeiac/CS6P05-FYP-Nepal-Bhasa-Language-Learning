@@ -5,6 +5,8 @@ import 'package:nepalbhasafyp/Screens/Login%20Screen/login.dart';
 import '../Network/token_shared_preferences.dart';
 import '../Presentation/colors.dart';
 import '../Screens/Favorite Screen/favouritePage.dart';
+import '../Screens/Feedback Screen/feedbackPage.dart';
+import '../Screens/History Screen/historyPage.dart';
 import '../Screens/Search Screen/searchPage.dart';
 import '../Screens/test.dart';
 
@@ -97,9 +99,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               onSelected: (value) {
                 if (value == 0) {
-                  print("My account menu is selected.");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => historyPage()),
+                  );
+                  print("About page is selected.");
                 } else if (value == 1) {
-                  print("Settings menu is selected.");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => feedbackPage()),
+                  );
+                  print("feedback menu is selected.");
                 } else if (value == 2) {
                   TokenSharedPrefernces.instance.removeToken("token");
                   Navigator.push(
