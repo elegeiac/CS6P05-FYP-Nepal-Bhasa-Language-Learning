@@ -19,8 +19,10 @@ class beginnerQuizPage extends StatefulWidget {
 class _beginnerQuizPageState extends State<beginnerQuizPage> {
   late AudioCache audioCache;
 
+//initiliaze the audio player
   @override
   void initState() {
+    beginnerQues.shuffle();
     super.initState();
     // create this only once
     audioCache = AudioCache(
@@ -35,6 +37,7 @@ class _beginnerQuizPageState extends State<beginnerQuizPage> {
   bool endOfQuiz = false;
   bool correctOptionSelected = false;
 
+// to track the index of question
   void _questionAnswered(bool answerScore) {
     setState(() {
       // answer was selected
@@ -86,6 +89,7 @@ class _beginnerQuizPageState extends State<beginnerQuizPage> {
 
   void _resetQuiz() {
     setState(() {
+      beginnerQues.shuffle();
       _questionIndex = 0;
       _totalScore = 0;
       endOfQuiz = false;

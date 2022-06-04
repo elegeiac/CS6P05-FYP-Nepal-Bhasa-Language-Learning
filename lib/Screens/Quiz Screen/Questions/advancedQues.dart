@@ -1,26 +1,4 @@
-List advancedQues = const [
-  {
-    'category': 'image',
-    'question': 'Which letter is displayed below?',
-    'image': 'static/quiz/intQuiz/gya.png',
-    'audio': '',
-    'answers': [
-      {'optionText': 'A. च (cha)', 'score': false},
-      {'optionText': 'B. ज्ञ (gya)', 'score': true},
-      {'optionText': 'C. ष (sha)', 'score': false},
-    ],
-  },
-  {
-    'category': 'text',
-    'question': 'How do you say "Hair" in Nepal Bhasa?',
-    'image': '',
-    'audio': '',
-    'answers': [
-      {'optionText': 'A. सँ (Saa)', 'score': true},
-      {'optionText': 'B. ख्वा (Khwa)', 'score': false},
-      {'optionText': 'C. मिखा (Mikhaa)', 'score': false},
-    ],
-  },
+List advancedQues =  [
   {
     'category': 'audio',
     'question': 'Play the narration and choose the correct meaning.',
@@ -35,23 +13,45 @@ List advancedQues = const [
   {
     'category': 'image',
     'question': 'Which is the meaning of the word displayed below?',
-    'image': 'static/quiz/intQuiz/C3P1.png',
+    'image': 'static/quiz/intQuiz/C14P5.png',
     'audio': '',
     'answers': [
-      {'optionText': 'A. Ear', 'score': false},
-      {'optionText': 'B. Eyebrow', 'score': false},
-      {'optionText': 'C. Eye', 'score': true},
+      {'optionText': 'A. It is hot', 'score': false},
+      {'optionText': 'B. It is cloudy', 'score': false},
+      {'optionText': 'C. It is raining.', 'score': true},
+    ],
+  },
+  {
+    'category': 'image',
+    'question': 'Which letter is displayed below?',
+    'image': 'static/quiz/begQuiz/ma.png',
+    'audio': '',
+    'answers': [
+      {'optionText': 'A. च (cha)', 'score': false},
+      {'optionText': 'B. ब (ba)', 'score': false},
+      {'optionText': 'C. म (ma)', 'score': true},
+    ],
+  },
+  {
+    'category': 'audio',
+    'question': 'Play the narration and choose the correct meaning.',
+    'image': '',
+    'audio': 'C11P7.mp3',
+    'answers': [
+      {'optionText': 'A. Younger Brother', 'score': false},
+      {'optionText': 'B. Elder Sister', 'score': true},
+      {'optionText': 'C. Younger Sister', 'score': false},
     ],
   },
   {
     'category': 'text',
-    'question': 'What is the meaning of "ल"?',
+    'question': 'How do you say "five" in Nepal Bhasa?',
     'image': '',
     'audio': '',
     'answers': [
-      {'optionText': 'A. Rice', 'score': false},
-      {'optionText': 'B. Water', 'score': true},
-      {'optionText': 'C. Meat', 'score': false},
+      {'optionText': 'A. स्व (Swa)', 'score': false},
+      {'optionText': 'B. न्या (Nya)', 'score': true},
+      {'optionText': 'C. न्हे (Nyehe)', 'score': false},
     ],
   },
   {
@@ -66,14 +66,14 @@ List advancedQues = const [
     ],
   },
   {
-    'category': 'audio',
-    'question': 'Play the narration and choose the correct meaning.',
+    'category': 'text',
+    'question': 'How do you say "Yellow" in Nepal Bhasa?',
     'image': '',
-    'audio': 'C4P2.mp3',
+    'audio': '',
     'answers': [
-      {'optionText': 'A. Green', 'score': true},
-      {'optionText': 'B. Yellow', 'score': false},
-      {'optionText': 'C. Black', 'score': false},
+      {'optionText': 'A. तुयु (Tuyuu)', 'score': false},
+      {'optionText': 'B. ह्यांगु (Hyangu)', 'score': false},
+      {'optionText': 'C. म्हासु (mhaasu)', 'score': true},
     ],
   },
   {
@@ -91,11 +91,11 @@ List advancedQues = const [
     'category': 'audio',
     'question': 'Play the narration and choose the correct meaning.',
     'image': '',
-    'audio': 'C12P4.mp3',
+    'audio': 'C13P4.mp3',
     'answers': [
-      {'optionText': 'A. Looks Delicious', 'score': true},
-      {'optionText': 'B. Spicy', 'score': false},
-      {'optionText': 'C. Does not taste good', 'score': false},
+      {'optionText': 'A. Today', 'score': false},
+      {'optionText': 'B. Tomorrow', 'score': false},
+      {'optionText': 'C. Day After Tomorrow', 'score': true},
     ],
   },
   {

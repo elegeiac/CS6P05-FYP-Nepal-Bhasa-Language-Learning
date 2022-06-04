@@ -21,6 +21,7 @@ class _intermmediateQuizPageState extends State<intermmediateQuizPage> {
 
   @override
   void initState() {
+    intermmediateQues.shuffle();
     super.initState();
     // create this only once
     audioCache = AudioCache(
@@ -86,6 +87,7 @@ class _intermmediateQuizPageState extends State<intermmediateQuizPage> {
 
   void _resetQuiz() {
     setState(() {
+      intermmediateQues.shuffle();
       _questionIndex = 0;
       _totalScore = 0;
       endOfQuiz = false;

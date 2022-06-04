@@ -103,7 +103,7 @@ class _searchPageState extends State<searchPage> {
                   title: TextField(
                     style: TextStyle(
                         color: AppColor.MAROON,
-                        fontFamily: 'Nexa',
+                        fontFamily: 'Comic',
                         fontSize: 16),
                     controller: controller,
                     onChanged: onSearch,

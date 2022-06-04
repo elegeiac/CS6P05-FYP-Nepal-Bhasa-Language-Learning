@@ -21,10 +21,11 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
 
   @override
   void initState() {
+    advancedQues.shuffle();
     super.initState();
     // create this only once
     audioCache = AudioCache(
-        prefix: "assets/audio/intQuiz/",
+        prefix: "assets/audio/advQuiz/",
         fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
 
@@ -86,6 +87,7 @@ class _advancedQuizPageState extends State<advancedQuizPage> {
 
   void _resetQuiz() {
     setState(() {
+      advancedQues.shuffle();
       _questionIndex = 0;
       _totalScore = 0;
       endOfQuiz = false;

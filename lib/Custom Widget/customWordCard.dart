@@ -91,7 +91,7 @@ class _WordCardState extends State<WordCard> {
                   child: Text(
                     widget.engMeaning!,
                     style: TextStyle(
-                        fontFamily: 'Nexa',
+                        fontFamily: 'Comic',
                         fontSize: 20,
                         color: AppColor.MAROON),
                   ),

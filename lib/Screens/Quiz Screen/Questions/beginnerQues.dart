@@ -1,4 +1,4 @@
-List beginnerQues = const [
+List beginnerQues =  [
   {
     'category': 'image',
     'question': 'Which letter is displayed below?',
@@ -60,9 +60,9 @@ List beginnerQues = const [
     'image': 'static/quiz/begQuiz/C13P1.png',
     'audio': '',
     'answers': [
-      {'optionText': 'A. Today', 'score': true},
+      {'optionText': 'A. Today', 'score': false},
       {'optionText': 'B. Now', 'score': false},
-      {'optionText': 'C. Tomorrow', 'score': false},
+      {'optionText': 'C. Tomorrow', 'score': true},
     ],
   },
   {
