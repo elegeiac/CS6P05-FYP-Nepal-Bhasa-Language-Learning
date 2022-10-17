@@ -15,10 +15,6 @@ class historyPage extends StatefulWidget {
 
 class _historyPageState extends State<historyPage> {
   late Future<ListResult> futureFiles;
-  @override
-  void initState() {
-    futureFiles = FirebaseStorage.instance.ref('/files').listAll();
-  }
 
   int activeIndex = 0;
   final urlImages = [
